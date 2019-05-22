@@ -1,6 +1,7 @@
 $(document).ready(function() {
-  ////genero numero giocatori
+  ////chiedo numero giocatori
 var nr_giocatori = parseInt(prompt('quanti giocatori vuoi generare?'));
+// richiedo i giocatori all'api
 $.ajax({
   url: 'https://www.boolean.careers/api/array/basket?n=numberPlayers',
   method: 'GET',
@@ -8,6 +9,7 @@ $.ajax({
     n: nr_giocatori
   },
   success: function(giocatori) {
+    //per ogni giocatore creato, viene generata una card e viene inserita nell'html
     for (var i = 0; i < giocatori.response.length; i++) {
       var source = document.getElementById("cardTemplate").innerHTML;
       var template = Handlebars.compile(source);
